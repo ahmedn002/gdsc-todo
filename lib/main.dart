@@ -30,6 +30,9 @@ class App extends StatelessWidget {
                 bodyColor: AppColors.primaryText,
                 displayColor: AppColors.primaryText,
               ),
+          appBarTheme: const AppBarTheme(
+            surfaceTintColor: Colors.transparent,
+          ),
         ),
         routes: {
           Routes.home: (context) => const HomeScreen(),

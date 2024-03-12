@@ -11,6 +11,7 @@ import 'package:task_one/view/widgets/misc/custom_app_bar.dart';
 import 'package:task_one/view/widgets/pinned task card/pinned_task_card.dart';
 
 import 'components/greeting_section.dart';
+import 'components/task_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,14 +48,18 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: AppColors.background,
             appBar: CustomAppBar(trailing: SvgPicture.asset(AssetData.settingsSvg)),
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 10),
-              child: Column(
-                children: [
-                  const GreetingSection(),
-                  const SizedBox(height: 32),
-                  if (pinnedTask != null) PinnedTaskCard(task: pinnedTask),
-                  const SizedBox(height: 32),
-                  Expanded(child: YourTasksSection(tasks: tasksProvider.tasks)),
+              padding: const EdgeInsets.symmetric(horizontal: 27),
+              child: CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(child: SizedBox(height: 10)),
+                  const SliverToBoxAdapter(child: GreetingSection()),
+                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                  if (pinnedTask != null) SliverToBoxAdapter(child: PinnedTaskCard(task: pinnedTask)),
+                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                  SliverToBoxAdapter(child: YourTasksSection(tasks: tasksProvider.tasks)),
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                  TaskList(tasks: tasksProvider.tasks),
+                  const SliverToBoxAdapter(child: SizedBox(height: 10)),
                 ],
               ),
             ),

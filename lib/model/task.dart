@@ -49,7 +49,55 @@ class Task {
           TaskComponent(name: 'Lunch', isDone: true),
           TaskComponent(name: 'Dinner', isDone: true),
         ],
-      )
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
+      Task(
+        title: 'Prepare food',
+        components: [
+          TaskComponent(name: 'Breakfast', isDone: true),
+          TaskComponent(name: 'Lunch', isDone: true),
+          TaskComponent(name: 'Dinner', isDone: true),
+        ],
+      ),
     ];
   }
 }

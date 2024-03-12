@@ -6,8 +6,9 @@ import 'package:task_one/view/widgets/input/input_field.dart';
 
 class TodosSection extends StatelessWidget {
   final List<TextEditingController> controllers;
+  final List<FocusNode> focusNodes;
   final void Function(int) onRemove;
-  const TodosSection({super.key, required this.controllers, required this.onRemove});
+  const TodosSection({super.key, required this.controllers, required this.focusNodes, required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,12 @@ class TodosSection extends StatelessWidget {
         const SizedBox(height: 10),
         ListView(
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             for (var i = 0; i < controllers.length; i++) ...[
               InputField(
                 controller: controllers[i],
+                focusNode: focusNodes[i],
                 hintText: 'ToDo ${i + 1}',
                 prefix: SvgPicture.asset(AssetData.clipboardSvg),
                 suffix: i != 0
@@ -34,6 +37,11 @@ class TodosSection extends StatelessWidget {
                       )
                     : null,
                 validator: Validators.nonEmpty,
+                onEditingComplete: () {
+                  if (i + 1 != controllers.length) {
+                    FocusScope.of(context).requestFocus(focusNodes[i + 1]);
+                  }
+                },
               ),
               if (i != controllers.length - 1) const SizedBox(height: 15),
             ]

@@ -3,28 +3,35 @@ import 'package:task_one/constants/colors.dart';
 
 class InputField extends StatelessWidget {
   final TextEditingController controller;
+  final FocusNode? focusNode;
   final bool obscureText;
   final TextInputType keyboardType;
   final Widget? prefix;
   final Widget? suffix;
   final String hintText;
   final String? Function(String?) validator;
+  final void Function()? onEditingComplete;
 
-  const InputField(
-      {super.key,
-      required this.controller,
-      this.obscureText = false,
-      this.keyboardType = TextInputType.text,
-      this.prefix,
-      this.suffix,
-      required this.hintText,
-      required this.validator});
+  const InputField({
+    super.key,
+    required this.controller,
+    this.focusNode,
+    this.obscureText = false,
+    this.keyboardType = TextInputType.text,
+    this.prefix,
+    this.suffix,
+    required this.hintText,
+    required this.validator,
+    this.onEditingComplete,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      focusNode: focusNode,
       validator: validator,
+      onEditingComplete: onEditingComplete,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         filled: true,

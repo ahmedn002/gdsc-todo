@@ -21,44 +21,50 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _titleController = TextEditingController();
   final List<TextEditingController> _todosControllers = [TextEditingController()]; // One initial to-do
+  final List<FocusNode> _focusNodes = [FocusNode()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(text: 'Create Task'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 27),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              TitleSection(controller: _titleController),
-              const Divider(
-                color: AppColors.secondaryText,
-                thickness: 1,
-                height: 40,
-              ),
-              TodosSection(
-                controllers: _todosControllers,
-                onRemove: (int index) {
-                  setState(() {
-                    _todosControllers.removeAt(index);
-                  });
-                },
-              ),
-              const SizedBox(height: 15),
-              CustomButton(
-                text: 'Add',
-                icon: SvgPicture.asset(AssetData.plusSvg),
-                minimumSize: const Size(200, 45),
-                onPressed: () {
-                  setState(() {
-                    _todosControllers.add(TextEditingController());
-                  });
-                },
-              )
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 27),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                TitleSection(controller: _titleController),
+                const Divider(
+                  color: AppColors.secondaryText,
+                  thickness: 1,
+                  height: 40,
+                ),
+                TodosSection(
+                  controllers: _todosControllers,
+                  focusNodes: _focusNodes,
+                  onRemove: (int index) {
+                    setState(() {
+                      _todosControllers.removeAt(index);
+                    });
+                  },
+                ),
+                const SizedBox(height: 15),
+                CustomButton(
+                  text: 'Add',
+                  icon: SvgPicture.asset(AssetData.plusSvg),
+                  minimumSize: const Size(200, 45),
+                  onPressed: () {
+                    setState(() {
+                      _todosControllers.add(TextEditingController());
+                      _focusNodes.add(FocusNode());
+                      _focusNodes.last.requestFocus();
+                    });
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
